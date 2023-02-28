@@ -3,8 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   notification: {
     isOpen: false,
-    message: "",
-    type: "info",
+    message: '',
+    type: 'info',
     duration: 3000
   }
 }

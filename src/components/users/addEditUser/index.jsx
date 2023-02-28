@@ -1,13 +1,13 @@
-import { useFormik } from "formik";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { TextField, Button, MenuItem, Box, Grid } from "@mui/material";
+import { useFormik } from 'formik';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { TextField, Button, MenuItem, Box, Grid } from '@mui/material';
 
-import { userValidationSchema } from "../constants";
-import { addUser, updateUser } from "../../../store/slices/userSlice";
-import { generatePasswordHash } from "../../../utils";
-import { setNotification } from "../../../store/slices/appSlice";
+import { userValidationSchema } from '../constants';
+import { addUser, updateUser } from '../../../store/slices/userSlice';
+import { generatePasswordHash } from '../../../utils';
+import { setNotification } from '../../../store/slices/appSlice';
 
 const AddEditUser = () => {
   const { id: userId } = useParams();
@@ -20,27 +20,27 @@ const AddEditUser = () => {
 
   const { values, touched, errors, handleChange, handleSubmit, setValues, isSubmitting } = useFormik({
     initialValues: {
-      name: "",
-      username: "",
-      mobile: "",
-      email: "",
-      password: "",
-      roleKey: ""
+      name: '',
+      username: '',
+      mobile: '',
+      email: '',
+      password: '',
+      roleKey: ''
     },
     validationSchema: userValidationSchema,
     onSubmit: (formValues) => {
       formValues.password = generatePasswordHash(formValues.password);
-      console.log(">>>>> Final user detail", formValues);
-      let message = "User added";
+      console.log('>>>>> Final user detail', formValues);
+      let message = 'User added';
       if (userId && userDetail) {
         dispatch(updateUser(formValues));
-        message = "User update";
+        message = 'User update';
       } else {
         dispatch(addUser(formValues));
       }
       dispatch(setNotification({
         message,
-        type: "success"
+        type: 'success'
       }));
       navigate('/user');
     },
@@ -50,15 +50,15 @@ const AddEditUser = () => {
       userList.map(item => {
         if (item.id !== userId) {
           if(item.email === formValues.email) {
-            errorObject.email = "Email already exist!";
+            errorObject.email = 'Email already exist!';
           }
 
           if(item.username === formValues.username) {
-            errorObject.username = "Username already exist!";
+            errorObject.username = 'Username already exist!';
           }
 
           if(item.mobile === formValues.mobile) {
-            errorObject.mobile = "Mobile number already exist!";
+            errorObject.mobile = 'Mobile number already exist!';
           }
         }
         return item;
@@ -71,31 +71,30 @@ const AddEditUser = () => {
 
   useEffect(() => {
     if (userId && userDetail) {
-      setValues({ ...userDetail, password: "" });
+      setValues({ ...userDetail, password: '' });
     }
+    // eslint-disable-next-line
   }, [userId]);
 
   const handleMobileNumber = (event) => {
     // Allow only digit values
-    const val = event.target.value.replace(/\D/g, "");
+    const val = event.target.value.replace(/\D/g, '');
     event.target.value = val;
     handleChange(event);
   }
 
-  console.log(">>>> values.roleKey", values.roleKey);
-
   return (
-    <Box className="user_add_edit_form">
-      <h2>{userId ? "Update" : "Add"}&nbsp;User</h2>
+    <Box className='user_add_edit_form'>
+      <h2>{userId ? 'Update' : 'Add'}&nbsp;User</h2>
       <form onSubmit={handleSubmit}>
         <Box>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                id="name"
-                name="name"
-                label="Name"
+                id='name'
+                name='name'
+                label='Name'
                 value={values.name}
                 onChange={handleChange}
                 error={touched.name && Boolean(errors.name)}
@@ -106,9 +105,9 @@ const AddEditUser = () => {
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                id="username"
-                name="username"
-                label="Username"
+                id='username'
+                name='username'
+                label='Username'
                 value={values.username}
                 onChange={handleChange}
                 error={touched.username && Boolean(errors.username)}
@@ -121,9 +120,9 @@ const AddEditUser = () => {
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                id="mobile"
-                name="mobile"
-                label="Mobile"
+                id='mobile'
+                name='mobile'
+                label='Mobile'
                 value={values.mobile}
                 onChange={handleMobileNumber}
                 error={touched.mobile && Boolean(errors.mobile)}
@@ -135,13 +134,13 @@ const AddEditUser = () => {
               <TextField
                 fullWidth
                 select
-                id="roleKey"
-                name="roleKey"
-                label="Role"
-                value={values.roleKey || ""}
-                onChange={handleChange("roleKey")}
+                id='roleKey'
+                name='roleKey'
+                label='Role'
+                value={values.roleKey || ''}
+                onChange={handleChange('roleKey')}
                 error={touched.roleKey && Boolean(errors.roleKey)}
-                helperText={touched.roleKey ? errors.roleKey : ""}
+                helperText={touched.roleKey ? errors.roleKey : ''}
                 sx={{ mb: 3 }}
               >
                 {roleList.map(option => (
@@ -154,9 +153,9 @@ const AddEditUser = () => {
           </Grid>
           <TextField
             fullWidth
-            id="email"
-            name="email"
-            label="Email"
+            id='email'
+            name='email'
+            label='Email'
             value={values.email}
             onChange={handleChange}
             error={touched.email && Boolean(errors.email)}
@@ -165,10 +164,10 @@ const AddEditUser = () => {
           />
           <TextField
             fullWidth
-            id="password"
-            name="password"
-            label="Password"
-            type="password"
+            id='password'
+            name='password'
+            label='Password'
+            type='password'
             value={values.password}
             onChange={handleChange}
             error={touched.password && Boolean(errors.password)}
@@ -176,10 +175,10 @@ const AddEditUser = () => {
             sx={{ mb: 3 }}
           />
           <Button
-            color="primary"
-            variant="contained"
+            color='primary'
+            variant='contained'
             fullWidth
-            type="submit"
+            type='submit'
             disabled={isSubmitting}
           >
             Submit

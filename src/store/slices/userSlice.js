@@ -3,13 +3,13 @@ import { createSlice } from '@reduxjs/toolkit';
 // On initial data not added password
 const initialState = {
   list: [
-    { id: "1", name: 'Sagar', email: 'sagar@yopmail.com', username: "sagar", mobile: "9876543210", roleKey: "admin" },
-    { id: "2", name: 'Aman', email: 'aman@yopmail.com', username: "aman", mobile: "9876543222", roleKey: "admin" },
-    { id: "3", name: 'Sumona', email: 'sumona@yopmail.com', username: "sumona", mobile: "9876543254", roleKey: "employee" },
+    { id: '1', name: 'Sagar', email: 'sagar@yopmail.com', username: 'sagar', mobile: '9876543210', roleKey: 'admin' },
+    { id: '2', name: 'Aman', email: 'aman@yopmail.com', username: 'aman', mobile: '9876543222', roleKey: 'admin' },
+    { id: '3', name: 'Sumona', email: 'sumona@yopmail.com', username: 'sumona', mobile: '9876543254', roleKey: 'employee' },
   ],
   roles: [
-    { id: "1", roleLabel: "Admin", roleKey: "admin" },
-    { id: "2", roleLabel: "Employee", roleKey: "employee" },
+    { id: '1', roleLabel: 'Admin', roleKey: 'admin' },
+    { id: '2', roleLabel: 'Employee', roleKey: 'employee' },
   ],
   isLoader: false
 }

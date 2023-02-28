@@ -34,8 +34,8 @@ const Header = () => {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        <img src={logo} className="app_logo" alt="logo" />
+      <Typography variant='h6' sx={{ my: 2 }}>
+        <img src={logo} className='app_logo' alt='logo' />
       </Typography>
       <Divider />
       <List>
@@ -57,23 +57,23 @@ const Header = () => {
   return (
     <header>
       <Box sx={{ display: 'flex' }}>
-        <AppBar component="nav">
+        <AppBar component='nav'>
           <Toolbar>
             <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
+              color='inherit'
+              aria-label='open drawer'
+              edge='start'
               onClick={handleDrawerToggle}
               sx={{ mr: 2, display: { sm: 'none' } }}
             >
               <MenuIcon />
             </IconButton>
             <Typography
-              variant="h6"
-              component="div"
+              variant='h6'
+              component='div'
               sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
             >
-              <img src={logo} className="app_logo" alt="logo" />
+              <img src={logo} className='app_logo' alt='logo' />
             </Typography>
             <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
               {navItems.map((item) => (
@@ -86,10 +86,10 @@ const Header = () => {
             </Box>
           </Toolbar>
         </AppBar>
-        <Box component="nav">
+        <Box component='nav'>
           <Drawer
             container={container}
-            variant="temporary"
+            variant='temporary'
             open={mobileOpen}
             onClose={handleDrawerToggle}
             ModalProps={{

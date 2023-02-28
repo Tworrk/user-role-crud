@@ -20,6 +20,7 @@ const RoleList = () => {
 
   useEffect(() => {
     setColumns(updateColumnsWithActions());
+    // eslint-disable-next-line
   }, []);
   
   const updateColumnsWithActions = () => {
@@ -32,12 +33,12 @@ const RoleList = () => {
       renderCell: (params) => {
         return (
           <div>
-            <Tooltip title="Edit Role">
+            <Tooltip title='Edit Role'>
               <IconButton onClick={() => navigate(`/role/${params.row.id}`)}>
                 <EditIcon />
               </IconButton>
             </Tooltip>
-            <Tooltip title="Delete Role">
+            <Tooltip title='Delete Role'>
               <IconButton onClick={() => setRemoveRoleDetail(params.row)}>
                 <DeleteIcon />
               </IconButton>
@@ -53,8 +54,8 @@ const RoleList = () => {
     dispatch(removeRole({ id: removeRoleDetail.id }));
     setRemoveRoleDetail(null);
     dispatch(setNotification({
-      message: "Role removed",
-      type: "success"
+      message: 'Role removed',
+      type: 'success'
     }));
   }
 
@@ -65,8 +66,8 @@ const RoleList = () => {
   return (
     <Box sx={{ height: 400, width: '100%' }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', m: 3, mx: 4 }}>
-        <Box component="h3" sx={{ color: "#444" }}>Role</Box>
-        <Button startIcon={<AddIcon />} variant="contained" onClick={handleAddNewRole}>Add</Button>
+        <Box component='h3' sx={{ color: '#444' }}>Role</Box>
+        <Button startIcon={<AddIcon />} variant='contained' onClick={handleAddNewRole}>Add</Button>
       </Box>
 
       <DataGrid
@@ -79,10 +80,10 @@ const RoleList = () => {
 
       <ConfirmDialog
         isOpen={Boolean(removeRoleDetail && removeRoleDetail.id)}
-        title="Confirm Remove"
+        title='Confirm Remove'
         description={
         <Box>
-          <Typography>Are you sure want to remove role "{removeRoleDetail ? removeRoleDetail.roleLabel : ''}" ?</Typography>
+          <Typography>Are you sure want to remove role '{removeRoleDetail ? removeRoleDetail.roleLabel : ''}' ?</Typography>
           <Typography>It may assign to user(s).</Typography>
         </Box>
         }
