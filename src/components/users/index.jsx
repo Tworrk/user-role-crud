@@ -13,7 +13,6 @@ import { setNotification } from '../../store/slices/appSlice';
 
 const UserList = () => {
   const [columns, setColumns] = useState([]);
-  const [userRoleObj, setUserRoleObj] = useState([]);
   const [removeUserDetail, setRemoveUserDetail] = useState(null);
   const list = useSelector((state) => state.user.list, shallowEqual);
   const userRoles = useSelector((state) => state.user.roles, shallowEqual);
@@ -22,20 +21,9 @@ const UserList = () => {
 
   useEffect(() => {
     setColumns(updateColumnsWithActions());
-    setUserRoleObj(convertUserRoleFlatten());
     // eslint-disable-next-line
   }, []);
   
-  const convertUserRoleFlatten = () => {
-    const obj = {};
-    userRoles.map(item => {
-      obj[item.roleKey] = item.roleLabel;
-      return item;
-    });
-
-    return obj;
-  }
-
   const updateColumnsWithActions = () => {
     const col = [...userColumns];
     col.push({
@@ -43,7 +31,8 @@ const UserList = () => {
       headerName: 'Role',
       width: 130,
       renderCell: (params) => {
-        return params.row.roleKey ? userRoleObj[params.row.roleKey] : ''
+        const roleLabel = userRoles.find(i => i.roleKey === params.row.roleKey)?.roleLabel || params.row.roleKey;
+        return roleLabel;
       }
     });
 
