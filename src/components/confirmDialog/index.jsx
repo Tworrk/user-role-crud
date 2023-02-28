@@ -21,7 +21,7 @@ const ConfirmDialog = ({
   return (
     <Dialog
       sx={{ '& .MuiDialog-paper': { width: '90%', maxHeight } }}
-      maxWidth="xs"
+      maxWidth='xs'
       open={isOpen}
       onClose={onClose}
     >

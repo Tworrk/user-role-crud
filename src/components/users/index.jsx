@@ -23,6 +23,7 @@ const UserList = () => {
   useEffect(() => {
     setColumns(updateColumnsWithActions());
     setUserRoleObj(convertUserRoleFlatten());
+    // eslint-disable-next-line
   }, []);
   
   const convertUserRoleFlatten = () => {
@@ -42,7 +43,7 @@ const UserList = () => {
       headerName: 'Role',
       width: 130,
       renderCell: (params) => {
-        return params.row.roleKey ? userRoleObj[params.row.roleKey] : ""
+        return params.row.roleKey ? userRoleObj[params.row.roleKey] : ''
       }
     });
 
@@ -52,12 +53,12 @@ const UserList = () => {
       renderCell: (params) => {
         return (
           <div>
-            <Tooltip title="Edit User">
+            <Tooltip title='Edit User'>
               <IconButton onClick={() => navigate(`/user/${params.row.id}`)}>
                 <EditIcon />
               </IconButton>
             </Tooltip>
-            <Tooltip title="Delete User">
+            <Tooltip title='Delete User'>
               <IconButton onClick={() => setRemoveUserDetail(params.row)}>
                 <DeleteIcon />
               </IconButton>
@@ -73,8 +74,8 @@ const UserList = () => {
     dispatch(removeUser({ id: removeUserDetail.id }));
     setRemoveUserDetail(null);
     dispatch(setNotification({
-      message: "User removed",
-      type: "success"
+      message: 'User removed',
+      type: 'success'
     }));
   }
 
@@ -85,8 +86,8 @@ const UserList = () => {
   return (
     <Box sx={{ height: 400, width: '100%' }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', m: 3, mx: 4 }}>
-        <Box component="h3" sx={{ color: "#444" }}>Users</Box>
-        <Button startIcon={<AddIcon />} variant="contained" onClick={handleAddNewUser}>Add</Button>
+        <Box component='h3' sx={{ color: '#444' }}>Users</Box>
+        <Button startIcon={<AddIcon />} variant='contained' onClick={handleAddNewUser}>Add</Button>
       </Box>
 
       <DataGrid
@@ -99,8 +100,8 @@ const UserList = () => {
 
       <ConfirmDialog
         isOpen={Boolean(removeUserDetail && removeUserDetail.id)}
-        title="Confirm Remove User"
-        description={`Are you sure want to remove user "${removeUserDetail ? removeUserDetail.name : ''}" ?`}
+        title='Confirm Remove User'
+        description={`Are you sure want to remove user '${removeUserDetail ? removeUserDetail.name : ''}' ?`}
         onConfirm={handleRemoveUser}
         onClose={() => setRemoveUserDetail(null)}
       />

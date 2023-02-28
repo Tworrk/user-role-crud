@@ -1,6 +1,7 @@
-import bcrypt from 'bcryptjs'
-const salt = bcrypt.genSaltSync(10);
+import CryptoJS from 'crypto-js';
+const secretPass = 'XkhZG4fW2t2W';
 
 export const generatePasswordHash = (password) => {
-  return bcrypt.hashSync(password, salt);
+
+  return CryptoJS.AES.encrypt(password, secretPass).toString();
 }

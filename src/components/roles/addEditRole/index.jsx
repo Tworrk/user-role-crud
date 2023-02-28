@@ -1,11 +1,11 @@
-import { useFormik } from "formik";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { TextField, Button, Box } from "@mui/material";
-import { roleValidationSchema } from "../constants";
-import { addRole, updateRole } from "../../../store/slices/userSlice";
-import { setNotification } from "../../../store/slices/appSlice";
+import { useFormik } from 'formik';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { TextField, Button, Box } from '@mui/material';
+import { roleValidationSchema } from '../constants';
+import { addRole, updateRole } from '../../../store/slices/userSlice';
+import { setNotification } from '../../../store/slices/appSlice';
 
 const AddEditRole = () => {
   const { id: roleId } = useParams();
@@ -17,23 +17,23 @@ const AddEditRole = () => {
 
   const { values, touched, errors, handleChange, handleSubmit, setValues, isSubmitting } = useFormik({
     initialValues: {
-      roleLabel: "",
-      roleKey: ""
+      roleLabel: '',
+      roleKey: ''
     },
     validationSchema: roleValidationSchema,
     onSubmit: (formValues) => {
-      console.log(">>>>> Final Role detail", formValues);
-      let message = "Role added";
+      console.log('>>>>> Final Role detail', formValues);
+      let message = 'Role added';
       if (roleId && roleDetail) {
         dispatch(updateRole(formValues));
-        message = "Role updated"
+        message = 'Role updated'
       } else {
         dispatch(addRole(formValues));
       }
 
       dispatch(setNotification({
         message,
-        type: "success"
+        type: 'success'
       }));
       navigate('/role');
     },
@@ -43,11 +43,11 @@ const AddEditRole = () => {
       roleList.map(item => {
         if (item.id !== roleId || !roleId) {
           if (item.roleLabel.toLowerCase() === formValues.roleLabel.toLowerCase()) {
-            errorObject.roleLabel = "Role Label already exist!";
+            errorObject.roleLabel = 'Role Label already exist!';
           }
 
           if (item.roleKey === formValues.roleKey) {
-            errorObject.roleKey = "Role key already exist!";
+            errorObject.roleKey = 'Role key already exist!';
           }
         }
         return item;
@@ -62,18 +62,19 @@ const AddEditRole = () => {
     if (roleId && roleDetail) {
       setValues(roleDetail);
     }
+    // eslint-disable-next-line
   }, [roleId]);
 
   return (
-    <Box className="user_add_edit_form">
-      <h2>{roleId ? "Update" : "Add"}&nbsp;Role</h2>
+    <Box className='user_add_edit_form'>
+      <h2>{roleId ? 'Update' : 'Add'}&nbsp;Role</h2>
       <form onSubmit={handleSubmit}>
         <Box>
           <TextField
             fullWidth
-            id="roleLabel"
-            name="roleLabel"
-            label="Role Label"
+            id='roleLabel'
+            name='roleLabel'
+            label='Role Label'
             value={values.roleLabel}
             onChange={handleChange}
             error={touched.roleLabel && Boolean(errors.roleLabel)}
@@ -82,9 +83,9 @@ const AddEditRole = () => {
           />
           <TextField
             fullWidth
-            id="roleKey"
-            name="roleKey"
-            label="Role Key"
+            id='roleKey'
+            name='roleKey'
+            label='Role Key'
             value={values.roleKey}
             onChange={handleChange}
             error={touched.roleKey && Boolean(errors.roleKey)}
@@ -92,10 +93,10 @@ const AddEditRole = () => {
             sx={{ mb: 3 }}
           />
           <Button
-            color="primary"
-            variant="contained"
+            color='primary'
+            variant='contained'
             fullWidth
-            type="submit"
+            type='submit'
             disabled={isSubmitting}
           >
             Submit
